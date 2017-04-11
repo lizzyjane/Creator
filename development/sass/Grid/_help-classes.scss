@@ -1,0 +1,23 @@
+//
+[class^="col-"] {
+    width: 100%;
+}
+
+// put this class on a row/wrapper and the children of this will be the same height
+.same-height {
+    > * {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+            display: flex;
+            background-color: red;
+            width: 100%;
+        }
+    }
+}
+
+.wrap {
+    box-sizing: border-box;
+    max-width: $wrapper-width;
+    margin: 0 auto;
+}
