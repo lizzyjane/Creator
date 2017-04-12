@@ -13,20 +13,17 @@
 		<div class="header"></div>
 		<div class="creator"><img src="img/main/creator_logo.png" alt="Logo Creator"></div>
 		<div class="fileinput"><input class="pictureInput-js" id="inputFileToLoad" type="file" 
-		onchange="encodeImageFileAsURL();" /></div>
-		<div id="imgPerson"></div>
-		<script type='text/javascript'>
+			onchange="encodeImageFileAsURL();" /></div>
+			<div id="imgPerson"></div>
+			<script type='text/javascript'>
 
-		var secretKey = '171e8465-f548-401d-b63b-caf0dc28df5f',
-			apiKey = 'd45fd466-51e2-4701-8da8-04351c872236';
+				function encodeImageFileAsURL(callback, context) {
 
-			function encodeImageFileAsURL(callback, context) {
-
-				var filesSelected = document.getElementById("inputFileToLoad").files;
-				if (filesSelected.length > 0) {
-					var fileToLoad = filesSelected[0];
-					var fileReader = new FileReader();
-					fileReader.onload = function(fileLoadedEvent) {
+					var filesSelected = document.getElementById("inputFileToLoad").files;
+					if (filesSelected.length > 0) {
+						var fileToLoad = filesSelected[0];
+						var fileReader = new FileReader();
+						fileReader.onload = function(fileLoadedEvent) {
 
 			      	// data: base64
 			      	var srcData = fileLoadedEvent.target.result; 
@@ -35,8 +32,8 @@
 			      	newImage.src = srcData;
 
 			      	document.getElementById("imgPerson").innerHTML = newImage.outerHTML;
-			      
-					callback && callback.call(context, newImage.src);
+
+			      	callback && callback.call(context, newImage.src);
 
 			      }
 
@@ -49,9 +46,16 @@
 				encodeImageFileAsURL(function(data)
 				{
 					var base64 = data;
-						base64 = base64.replace("data:image/jpeg;base64,", "");
+					base64 = base64.replace("data:image/jpeg;base64,", "");
 
-					 $.ajax({
+					var msg = '<?xml version="1.0" encoding="utf-8"?><ImageRequestBinary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' +
+					'<api_key>d45fd466-51e2-4701-8da8-04351c872236</api_key><api_secret>171e8465-f548-401d-b63b-caf0dc28df5f</api_secret>' +
+					'<detection_flags>' + '</detection_flags>' +
+					'<imagefile_data>' + base64 + '</imagefile_data>' +
+					'<original_filename>' + '</original_filename>' +
+					'</ImageRequestBinary>';
+
+					$.ajax({
 						async: 'true',
 						crossDomain: 'true',
 						url: 'http://www.betafaceapi.com/service.svc/UploadNewImage_File',
@@ -60,15 +64,11 @@
 						contentType: 'application/xml',
 						CacheControl: 'no-cache',
 						Pragma: 'no-cache',
-						data: 
-						{
-							api_key: apiKey,
-							api_secret: secretKey,
-							imagefile_data: base64
-						},
+						data: msg,
 						dataType: 'xml',
 
 						success: function (data, textStatus, jqXHR) {
+							console.log(jqXHR);
 							var xmlDocRoot = $.parseXML(jqXHR.responseText);
 							var xmlDoc = $(xmlDocRoot).children("BetafaceImageResponse");
 							var int_response = parseInt($(xmlDoc).children("int_response").text());
@@ -92,10 +92,15 @@
 				}, this);
 			})
 
-			// function getImageInfo(imageUid)
-			// {
-			// 	console.log(imageUid);
-			// }
+			function getImageInfo(imageUid)
+			{
+				var msg = '<?xml version="1.0" encoding="utf-8"?><ImageInfoRequestUid><api_key>d45fd466-51e2-4701-8da8-04351c872236</api_key><api_secret>171e8465-f548-401d-b63b-caf0dc28df5f</api_secret>' +
+				'<img_uid>' + imageUid + '</img_uid></ImageInfoRequestUid>';
+
+				
+
+			}
+
 
 		</script>
 
