@@ -1,16 +1,109 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="style.css" />
-		<script src="js/jquery.js"></script>
-		<script src="js/main.min.js" type="text/javascript"></script>
-	</head>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css" />
+	<script src="js/main.min.js" type="text/javascript"></script>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+</head>
 
-	<body>
-        <script>
+<body>
+	<section class="main">
+		<div class="header"></div>
+		<div class="creator"><img src="img/main/creator_logo.png" alt="Logo Creator"></div>
+		<div class="fileinput"><input class="pictureInput-js" id="inputFileToLoad" type="file" 
+		onchange="encodeImageFileAsURL();" /></div>
+		<div id="imgPerson"></div>
+		<script type='text/javascript'>
 
-        </script>
-    </body>
+		var secretKey = '171e8465-f548-401d-b63b-caf0dc28df5f',
+			apiKey = 'd45fd466-51e2-4701-8da8-04351c872236';
+
+			function encodeImageFileAsURL(callback, context) {
+
+				var filesSelected = document.getElementById("inputFileToLoad").files;
+				if (filesSelected.length > 0) {
+					var fileToLoad = filesSelected[0];
+					var fileReader = new FileReader();
+					fileReader.onload = function(fileLoadedEvent) {
+
+			      	// data: base64
+			      	var srcData = fileLoadedEvent.target.result; 
+
+			      	var newImage = document.createElement('img');
+			      	newImage.src = srcData;
+
+			      	document.getElementById("imgPerson").innerHTML = newImage.outerHTML;
+			      
+					callback && callback.call(context, newImage.src);
+
+			      }
+
+			      fileReader.readAsDataURL(fileToLoad);
+
+			  }
+			}
+
+			$('#inputFileToLoad').on('change', function(){
+				encodeImageFileAsURL(function(data)
+				{
+					var base64 = data;
+						base64 = base64.replace("data:image/jpeg;base64,", "");
+
+					 $.ajax({
+						async: 'true',
+						crossDomain: 'true',
+						url: 'http://www.betafaceapi.com/service.svc/UploadNewImage_File',
+						type: 'POST',
+						contentLength: '94998',
+						contentType: 'application/xml',
+						CacheControl: 'no-cache',
+						Pragma: 'no-cache',
+						data: 
+						{
+							api_key: apiKey,
+							api_secret: secretKey,
+							imagefile_data: base64
+						},
+						dataType: 'xml',
+
+						success: function (data, textStatus, jqXHR) {
+							var xmlDocRoot = $.parseXML(jqXHR.responseText);
+							var xmlDoc = $(xmlDocRoot).children("BetafaceImageResponse");
+							var int_response = parseInt($(xmlDoc).children("int_response").text());
+							var string_response = $(xmlDoc).children("string_response").text();
+							if (int_response == 0) {
+								var img_uid = $(xmlDoc).children("img_uid").text();
+								getImageInfo(img_uid);
+							}
+							else {
+                            //error
+                            console.info(int_response);
+                            console.info(string_response);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    	console.info(textStatus);
+                    } 
+
+                });
+
+				}, this);
+			})
+
+			// function getImageInfo(imageUid)
+			// {
+			// 	console.log(imageUid);
+			// }
+
+		</script>
+
+		<div class="skincolor"></div>
+		<div class="haircolor"></div>
+		<div class="eyecolor"></div>
+
+		<div class="footer"></div>
+	</section>
+</body>
 </html>

@@ -1,0 +1,64 @@
+.main {
+
+    .header {
+        height: 40px;
+        padding-bottom: 30px;
+        margin: 0 0 20px 0;
+        padding: 0;
+        background: -moz-linear-gradient(left, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+
+    .footer {
+        position: fixed;
+        height: 40px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0;
+        background: -moz-linear-gradient(left, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+
+    .creator { 
+        text-align: center;
+
+        img {
+            width: 30%;
+        }
+    }
+
+    .fileinput {
+        text-align: center;
+    }
+
+    #imgPerson {
+        img{
+            width: 200px;
+        }
+
+        text-align: center;
+        padding: 2.5rem;
+    }
+
+    /* .skincolor {
+        background-color: #caa59b;
+        width: 15rem;
+        height: 5rem;
+    }
+
+    .haircolor {
+        background-color: #db9d38;
+        width: 15rem;
+        height: 5rem;
+    }
+
+    .eyecolor {
+        background-color: #0071bc;
+        width: 15rem;
+        height: 5rem;
+    } */
+}
+

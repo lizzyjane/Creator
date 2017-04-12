@@ -1067,3 +1067,68 @@ body {
   background-repeat: no-repeat;
   float: left;
 }
+
+.main {
+  /* .skincolor {
+        background-color: #caa59b;
+        width: 15rem;
+        height: 5rem;
+    }
+
+    .haircolor {
+        background-color: #db9d38;
+        width: 15rem;
+        height: 5rem;
+    }
+
+    .eyecolor {
+        background-color: #0071bc;
+        width: 15rem;
+        height: 5rem;
+    } */
+}
+
+.main .header {
+  height: 40px;
+  padding-bottom: 30px;
+  margin: 0 0 20px 0;
+  padding: 0;
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.main .footer {
+  position: fixed;
+  height: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.main .creator {
+  text-align: center;
+}
+
+.main .creator img {
+  width: 30%;
+}
+
+.main .fileinput {
+  text-align: center;
+}
+
+.main #imgPerson {
+  text-align: center;
+  padding: 2.5rem;
+}
+
+.main #imgPerson img {
+  width: 200px;
+}
