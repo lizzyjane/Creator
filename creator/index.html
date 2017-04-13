@@ -18,10 +18,20 @@
 			<p>* Photo's with one person only. </p>
 			<p>* Professional portretphoto works best. </p>
 		</div>
+
+		<div id="loader"></div>
 		
 		<div class="fileinput"><input class="pictureInput-js" id="inputFileToLoad" type="file" 
 			onchange="encodeImageFileAsURL();" /></div>
 			<div id="imgPerson"></div>
+
+			<div id="skincolor"></div>
+
+			<div id="haircolor"></div>
+			<div id="eyecolor"></div>
+
+			<div class="footer"></div>
+
 			<script type='text/javascript'>
 
 				function encodeImageFileAsURL(callback, context) {
@@ -124,11 +134,13 @@
 						if (int_response == 1) {
 	                        // image is in the queue
 	                        setTimeout(function () { getImageInfo(imageUid); }, 500);
-	                     	console.log("Loading...");
+	                        document.getElementById("loader").style.visibility = "visible";
+	                        console.log("loading......");
                     	}
 
 						else if (int_response == 0) {
 	                        //image processed
+	                        document.getElementById("loader").style.visibility = "hidden";
 	                        getFaceImage(uid);
                     	}
 
@@ -162,10 +174,7 @@
             			
 
             			var TagInfo = parseXml(xmlDoc); //data
-            			//console.log(TagInfo);
-            			//console.log(jqXHR.responseText);
-
-            			searchAllPar();
+            			searchAllPar(TagInfo);
             		},
 
             		error: function (jqXHR, textStatus, errorThrown) {
@@ -188,7 +197,7 @@
             	return items;
             }
 
-            function searchAllPar(TagInfo) {
+             function searchAllPar(TagInfo) {
 
             	for (var i = 0; i < TagInfo.length; i++) {
             		
@@ -206,24 +215,25 @@
             			race = TagInfo[i].value;
             			break;
             			case "color eyes":
-            			colorEyes = TagInfo[i].value;
+            			colorEyes = ("#" + TagInfo[i].value);
             			break;
             			case "color hair":
-            			colorHair = TagInfo[i].value;
+            			colorHair = ("#" + TagInfo[i].value);
             			break;
             			case "color skin":
-            			colorSkin = TagInfo[i].value;
+            			colorSkin = ("#" + TagInfo[i].value);
+
+            			console.log(age, gender, glasses, race, colorEyes, colorHair, colorSkin);
+
             		}
             	}
-            }
+
+            	$("#eyecolor").css("background-color", colorEyes);
+            	$("#haircolor").css("background-color", colorHair);
+            	$("#skincolor").css("background-color", colorSkin);
+            } 
 
         </script>
-
-		<div class="skincolor"></div>
-		<div class="haircolor"></div>
-		<div class="eyecolor"></div>
-
-		<div class="footer"></div>
 	</section>
 </body>
 </html>
