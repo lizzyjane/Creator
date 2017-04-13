@@ -1112,6 +1112,10 @@ body {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
+.main .infotext {
+  text-align: center;
+}
+
 .main .creator {
   text-align: center;
 }

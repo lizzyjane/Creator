@@ -12,6 +12,13 @@
 	<section class="main">
 		<div class="header"></div>
 		<div class="creator"><img src="img/main/creator_logo.png" alt="Logo Creator"></div>
+
+		<div class="infotext">
+			<p>* No black and white photo's. Only color!</p>
+			<p>* Photo's with one person only. </p>
+			<p>* Professional portretphoto works best. </p>
+		</div>
+		
 		<div class="fileinput"><input class="pictureInput-js" id="inputFileToLoad" type="file" 
 			onchange="encodeImageFileAsURL();" /></div>
 			<div id="imgPerson"></div>
@@ -50,7 +57,7 @@
 
 					var msg = '<?xml version="1.0" encoding="utf-8"?><ImageRequestBinary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' +
 					'<api_key>d45fd466-51e2-4701-8da8-04351c872236</api_key><api_secret>171e8465-f548-401d-b63b-caf0dc28df5f</api_secret>' +
-					'<detection_flags>' + '</detection_flags>' +
+					'<detection_flags>' + "classifiers" + "extended" + '</detection_flags>' +
 					'<imagefile_data>' + base64 + '</imagefile_data>' +
 					'<original_filename>' + '</original_filename>' +
 					'</ImageRequestBinary>';
@@ -68,7 +75,6 @@
 						dataType: 'xml',
 
 						success: function (data, textStatus, jqXHR) {
-							console.log(jqXHR);
 							var xmlDocRoot = $.parseXML(jqXHR.responseText);
 							var xmlDoc = $(xmlDocRoot).children("BetafaceImageResponse");
 							var int_response = parseInt($(xmlDoc).children("int_response").text());
@@ -96,13 +102,122 @@
 			{
 				var msg = '<?xml version="1.0" encoding="utf-8"?><ImageInfoRequestUid><api_key>d45fd466-51e2-4701-8da8-04351c872236</api_key><api_secret>171e8465-f548-401d-b63b-caf0dc28df5f</api_secret>' +
 				'<img_uid>' + imageUid + '</img_uid></ImageInfoRequestUid>';
+				//console.log(imageUid);
 
-				
+				$.ajax({
+					crossDomain: true,
+					url: 'http://www.betafaceapi.com/service.svc/GetImageInfo',
+					type: 'post',
+					contentType: 'application/xml',
+					processData: false,
+					data: msg,
+					dataType: 'xml',
+					success: function (data, textStatus, jqXHR) {
+						var xmlDocRoot = $.parseXML(jqXHR.responseText);
+						var xmlDoc = $(xmlDocRoot).children("BetafaceImageInfoResponse");
+						var int_response = parseInt($(xmlDoc).children("int_response").text());
+						var string_response = $(xmlDoc).children("string_response").text();
+						var faces = $(xmlDoc).children("faces").text();
+						//var uid = $(xmlDoc).children("uid").text();
+						var uid = $(xmlDoc).children("faces").children("FaceInfo").children("uid").text();
 
-			}
+						if (int_response == 1) {
+	                        // image is in the queue
+	                        setTimeout(function () { getImageInfo(imageUid); }, 500);
+	                     	console.log("Loading...");
+                    	}
 
+						else if (int_response == 0) {
+	                        //image processed
+	                        getFaceImage(uid);
+                    	}
 
-		</script>
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    	console.info(textStatus);
+                    } 
+                });
+            }
+
+            function getFaceImage(uid) 
+            {
+            	var msg = '<?xml version="1.0" encoding="utf-8"?><FaceRequestId><api_key>d45fd466-51e2-4701-8da8-04351c872236</api_key><api_secret>171e8465-f548-401d-b63b-caf0dc28df5f</api_secret>' +
+            	'<face_uid>' + uid + '</face_uid></FaceRequestId>';
+
+            	//console.log(uid);
+
+            	$.ajax({
+            		crossDomain: true,
+            		url: 'http://www.betafaceapi.com/service.svc/GetFaceImage',
+            		type: 'post',
+            		contentType: 'application/xml',
+            		processData: false,
+            		data: msg,
+            		dataType: 'xml',
+            		success: function (data, textStatus, jqXHR) {
+            			var xmlDocRoot = $.parseXML(jqXHR.responseText);
+            			var xmlDoc = $(xmlDocRoot).children("BetafaceFaceImageResponse");
+            			var int_response = parseInt($(xmlDoc).children("int_response").text());
+            			var string_response = $(xmlDoc).children("string_response").text();
+            			
+
+            			var TagInfo = parseXml(xmlDoc); //data
+            			//console.log(TagInfo);
+            			//console.log(jqXHR.responseText);
+
+            			searchAllPar();
+            		},
+
+            		error: function (jqXHR, textStatus, errorThrown) {
+            			console.info(textStatus);
+            		}
+            	});
+
+            	
+            };
+
+            function parseXml(xml) {
+            	var items = [];
+            	$(xml).find("TagInfo").each(function() {
+            		items.push({
+            			name: $(this).find("name").text(), 
+            			value: $(this).find("value").text()
+            		});
+            	});
+
+            	return items;
+            }
+
+            function searchAllPar(TagInfo) {
+
+            	for (var i = 0; i < TagInfo.length; i++) {
+            		
+            		switch (TagInfo[i].name) {
+            			case "age":
+            			age = TagInfo[i].value;
+            			break;
+            			case "gender":
+            			gender = TagInfo[i].value;
+            			break;
+            			case "glasses":
+            			glasses = TagInfo[i].value;
+            			break;
+            			case "race":
+            			race = TagInfo[i].value;
+            			break;
+            			case "color eyes":
+            			colorEyes = TagInfo[i].value;
+            			break;
+            			case "color hair":
+            			colorHair = TagInfo[i].value;
+            			break;
+            			case "color skin":
+            			colorSkin = TagInfo[i].value;
+            		}
+            	}
+            }
+
+        </script>
 
 		<div class="skincolor"></div>
 		<div class="haircolor"></div>
