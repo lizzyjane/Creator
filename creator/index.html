@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 	<script src="js/main.min.js" type="text/javascript"></script>
 	<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
 </head>
@@ -30,7 +31,29 @@
 
 			<div class="fileinput col-lg-4"><input class="pictureInput-js" id="inputFileToLoad" type="file" 
 				onchange="encodeImageFileAsURL();" /></div>
-				<div id="imgPerson"></div>
+				
+				<div id="block" class="block__left col-lg-6">
+					<div id="imgPerson"></div>
+					<div class="age col-lg-2">
+						<h1 class="age__name">AGE</h1>
+						<h2 id="age__value" class="age__value"><h2>
+					</div>
+					<!-- WOMAN / MAN -->
+					<img id="gender_man" src="img/main/man.png" alt="Man">
+					<img id="gender_woman" src="img/main/vrouw.png" alt="Woman">
+					<div class="glasses__block col-lg-2">
+						<h1 class="glasses__text">GLASSES</h1>
+						<img id="no_glasses" src="img/main/no_glasses.png" alt="No glasses">
+						<img id="yes_glasses" src="img/main/glasses.png" alt="Glasses">
+					</div>
+
+				</div>
+
+				<div class="block__right col-lg-6">
+					
+				</div>
+
+
 
 				<!-- <div id="skincolor"></div>
 
@@ -142,12 +165,14 @@
 	                        // image is in the queue
 	                        setTimeout(function () { getImageInfo(imageUid); }, 500);
 	                        document.getElementById("loader").style.visibility = "visible";
+	                        document.getElementById("block").style.visibility = "hidden";
 	                        console.log("loading......");
 	                    }
 
 	                    else if (int_response == 0) {
 	                        //image processed
 	                        document.getElementById("loader").style.visibility = "hidden";
+	                        document.getElementById("block").style.visibility = "visible";
 	                        getFaceImage(uid);
 	                    }
 
@@ -202,7 +227,7 @@
             	});
 
             	return items;
-            }
+            };
 
             function searchAllPar(TagInfo) {
 
@@ -231,6 +256,10 @@
             			colorSkin = ("#" + TagInfo[i].value);
 
             			console.log(age, gender, glasses, race, colorEyes, colorHair, colorSkin);
+            			document.getElementById('age__value').innerHTML = age;
+
+            			checkGender(gender);
+            			checkGlasses(glasses);
 
             		}
             	}
@@ -238,7 +267,33 @@
             	$("#eyecolor").css("background-color", colorEyes);
             	$("#haircolor").css("background-color", colorHair);
             	$("#skincolor").css("background-color", colorSkin);
-            } 
+            }; 
+
+            function checkGender(gender) {
+            	if (gender == "male") 
+            	{
+            		document.getElementById("gender_woman").style.display = "none";
+            		document.getElementById("gender_man").style.display = "block";
+            	}
+
+            	else if (gender == "female") 
+            	{
+            		document.getElementById("gender_man").style.display = "none";
+            		document.getElementById("gender_woman").style.display = "block";
+            	}
+            };
+
+            function checkGlasses(glasses) {
+            	if (glasses == "no") {
+					document.getElementById("yes_glasses").style.display = "none";
+            		document.getElementById("no_glasses").style.display = "block";
+            	}
+
+            	else if (glasses == "yes") {
+					document.getElementById("no_glasses").style.display = "none";
+            		document.getElementById("yes_glasses").style.display = "block";
+            	}
+            };
 
         </script>
     </section>
