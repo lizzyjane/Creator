@@ -1069,7 +1069,7 @@ body {
 }
 
 .main .header {
-  height: 40px;
+  height: 20px;
   padding-bottom: 30px;
   margin: 0 0 20px 0;
   padding: 0;
@@ -1082,12 +1082,12 @@ body {
 .main #loader {
   border: 10px solid #f3f3f3;
   border-top: 10px solid #a9b6eb;
-  margin: 0 auto;
+  margin: 8rem auto 2rem auto;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   animation: spin 2s linear infinite;
-  visibility: hidden;
+  visibility: visible;
 }
 
 @keyframes spin {
@@ -1116,6 +1116,26 @@ body {
   text-align: center;
 }
 
+.main .infotext__all {
+  width: 100%;
+  float: left;
+  padding: 0.5rem;
+  margin: 2rem;
+  max-width: 30%;
+}
+
+.main .infotext--first {
+  background-color: #edccd4;
+}
+
+.main .infotext--second {
+  background-color: #a9b6eb;
+}
+
+.main .infotext--third {
+  background-color: #a9d2db;
+}
+
 .main .creator {
   text-align: center;
 }
@@ -1126,6 +1146,18 @@ body {
 
 .main .fileinput {
   text-align: center;
+  margin: 0 auto;
+  background-color: lightgrey;
+  padding: 1rem;
+}
+
+.main .pictureInput-js {
+  color: white;
+  border: none;
+  padding: 5px 0px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 .main #imgPerson {

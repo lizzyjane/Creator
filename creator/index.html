@@ -9,38 +9,45 @@
 </head>
 
 <body>
-	<section class="main">
-		<div class="header"></div>
-		<div class="creator"><img src="img/main/creator_logo.png" alt="Logo Creator"></div>
+	<div class="wrap">
+		<section class="main">
+			<div class="header"></div>
+			<div class="creator col-lg-12"><img src="img/main/creator_logo.png" alt="Logo Creator"></div>
 
-		<div class="infotext">
-			<p>* No black and white photo's. Only color!</p>
-			<p>* Photo's with one person only. </p>
-			<p>* Professional portretphoto works best. </p>
-		</div>
+			<div class="infotext">
+				<div class="infotext__all infotext--first col-lg-4">
+					<p>No black and white photo's. Only color!</p>
+				</div>
+				<div class="infotext__all infotext--second col-lg-4">
+					<p>Photo's with one person only. </p>
+				</div>
+				<div class="infotext__all infotext--third col-lg-4">
+					<p>Professional portretphoto works best. </p>
+				</div>
+			</div>
 
-		<div id="loader"></div>
-		
-		<div class="fileinput"><input class="pictureInput-js" id="inputFileToLoad" type="file" 
-			onchange="encodeImageFileAsURL();" /></div>
-			<div id="imgPerson"></div>
+			<div id="loader"></div>
 
-			<div id="skincolor"></div>
+			<div class="fileinput col-lg-4"><input class="pictureInput-js" id="inputFileToLoad" type="file" 
+				onchange="encodeImageFileAsURL();" /></div>
+				<div id="imgPerson"></div>
 
-			<div id="haircolor"></div>
-			<div id="eyecolor"></div>
+				<!-- <div id="skincolor"></div>
 
-			<div class="footer"></div>
+				<div id="haircolor"></div>
+				<div id="eyecolor"></div> -->
 
-			<script type='text/javascript'>
+				<div class="footer"></div>
 
-				function encodeImageFileAsURL(callback, context) {
+				<script type='text/javascript'>
 
-					var filesSelected = document.getElementById("inputFileToLoad").files;
-					if (filesSelected.length > 0) {
-						var fileToLoad = filesSelected[0];
-						var fileReader = new FileReader();
-						fileReader.onload = function(fileLoadedEvent) {
+					function encodeImageFileAsURL(callback, context) {
+
+						var filesSelected = document.getElementById("inputFileToLoad").files;
+						if (filesSelected.length > 0) {
+							var fileToLoad = filesSelected[0];
+							var fileReader = new FileReader();
+							fileReader.onload = function(fileLoadedEvent) {
 
 			      	// data: base64
 			      	var srcData = fileLoadedEvent.target.result; 
@@ -136,25 +143,25 @@
 	                        setTimeout(function () { getImageInfo(imageUid); }, 500);
 	                        document.getElementById("loader").style.visibility = "visible";
 	                        console.log("loading......");
-                    	}
+	                    }
 
-						else if (int_response == 0) {
+	                    else if (int_response == 0) {
 	                        //image processed
 	                        document.getElementById("loader").style.visibility = "hidden";
 	                        getFaceImage(uid);
-                    	}
+	                    }
 
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                    	console.info(textStatus);
-                    } 
-                });
-            }
+	                },
+	                error: function (jqXHR, textStatus, errorThrown) {
+	                	console.info(textStatus);
+	                } 
+	            });
+			}
 
-            function getFaceImage(uid) 
-            {
-            	var msg = '<?xml version="1.0" encoding="utf-8"?><FaceRequestId><api_key>d45fd466-51e2-4701-8da8-04351c872236</api_key><api_secret>171e8465-f548-401d-b63b-caf0dc28df5f</api_secret>' +
-            	'<face_uid>' + uid + '</face_uid></FaceRequestId>';
+			function getFaceImage(uid) 
+			{
+				var msg = '<?xml version="1.0" encoding="utf-8"?><FaceRequestId><api_key>d45fd466-51e2-4701-8da8-04351c872236</api_key><api_secret>171e8465-f548-401d-b63b-caf0dc28df5f</api_secret>' +
+				'<face_uid>' + uid + '</face_uid></FaceRequestId>';
 
             	//console.log(uid);
 
@@ -197,7 +204,7 @@
             	return items;
             }
 
-             function searchAllPar(TagInfo) {
+            function searchAllPar(TagInfo) {
 
             	for (var i = 0; i < TagInfo.length; i++) {
             		
@@ -234,6 +241,8 @@
             } 
 
         </script>
-	</section>
+    </section>
+</div>
+
 </body>
 </html>
