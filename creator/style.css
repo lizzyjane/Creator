@@ -852,21 +852,20 @@ body {
   box-sizing: border-box;
 }
 
-h1 {
-  color: #a9d2db;
-  font-size: 4.7rem;
-  font-family: 'Josefin Sans', sans-serif;
+.footer {
+  position: fixed;
+  height: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
-h2 {
-  color: #a9d2db;
-}
-
-p {
-  font-size: 1.5rem;
-}
-
-.main .header {
+.header {
   height: 20px;
   padding-bottom: 30px;
   margin: 0 0 20px 0;
@@ -875,6 +874,26 @@ p {
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+h1 {
+  color: #a9d2db;
+  font-size: 4.2rem;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+h2 {
+  color: #a9d2db;
+  font-size: 7.2rem;
+}
+
+h3 {
+  color: #b3b3b3;
+  text-align: center;
+}
+
+p {
+  font-size: 1.5rem;
 }
 
 .main #loader {
@@ -895,19 +914,6 @@ p {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.main .footer {
-  position: fixed;
-  height: 40px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0;
-  /* FF3.6-15 */
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .main .infotext {
@@ -939,7 +945,7 @@ p {
 }
 
 .main .creator img {
-  width: 30%;
+  width: 20%;
 }
 
 .main .fileinput {
@@ -958,33 +964,27 @@ p {
   font-size: 16px;
 }
 
-.main .block__left {
+.main .block {
   border-style: solid;
   border-width: 3px;
   border-color: #b3b3b3;
-  float: left;
-  width: 100%;
-}
-
-.main .block__right {
-  border-style: solid;
-  border-width: 3px;
-  border-color: #b3b3b3;
-  float: left;
-  width: 100%;
+  margin: 0 auto;
+  margin-top: 3rem;
 }
 
 .main #imgPerson {
-  padding: 2.5rem 2.5rem 2.5rem 1.5rem;
+  padding: 2.5rem 2.5rem 2.5rem 2.5rem;
   float: left;
 }
 
 .main #imgPerson img {
-  width: 10rem;
+  max-height: 18rem;
 }
 
 .main .age {
   float: left;
+  margin: 0 auto;
+  max-width: 10rem;
 }
 
 .main .age__name {
@@ -995,23 +995,22 @@ p {
 }
 
 .main .age__value {
-  font-size: 9rem;
   padding: 0;
   margin: 8rem 0rem 0rem 0rem;
 }
 
-.main #gender_man {
-  width: 22%;
-  padding: 2.5rem 0rem 2.5rem 1rem;
-  float: left;
-  display: none;
+.main #man__hair, .main #man__face, .main #man__eyes, .main #woman__hair, .main #woman__face, .main #woman__eyes {
+  position: absolute;
 }
 
-.main #gender_woman {
-  width: 22%;
-  padding: 2.5rem 0rem 2.5rem 1rem;
-  float: left;
+.main #man {
   display: none;
+  padding: 2.5rem 0rem;
+}
+
+.main #woman {
+  display: none;
+  padding: 2.5rem 0rem;
 }
 
 .main .glasses {
@@ -1020,6 +1019,7 @@ p {
 
 .main .glasses__block {
   float: left;
+  margin: 0.5rem 3rem 0.5rem 0rem;
 }
 
 .main .glasses__text {
@@ -1027,31 +1027,56 @@ p {
 }
 
 .main #no_glasses {
-  width: 260%;
+  width: 100%;
 }
 
 .main #yes_glasses {
-  width: 260%;
+  width: 100%;
 }
 
 .main #block {
   visibility: hidden;
 }
 
-.main #skincolor {
-  background-color: #db9d38;
-  width: 15rem;
-  height: 20rem;
+.main .colors {
+  margin: auto 0;
+  max-width: 8rem;
 }
 
-.main #haircolor {
-  background-color: #db9d38;
-  width: 15rem;
-  height: 20rem;
+.main path.woman__hair--a {
+  fill: #aaa;
 }
 
-.main #eyecolor {
-  background-color: #db9d38;
-  width: 15rem;
-  height: 20rem;
+.main path.woman__face--b {
+  fill: #ccc;
+}
+
+.main circle.woman__eyes--a {
+  fill: #eee;
+}
+
+.main #skincolor, .main #haircolor, .main #eyecolor {
+  background-color: #b3b3b3;
+  width: 6rem;
+  height: 3rem;
+  margin: 1rem;
+  margin: 0 auto;
+}
+
+.main .button {
+  background-color: #edccd4;
+  padding: 0.5rem;
+  margin: 2rem;
+  text-align: center;
+}
+
+.main .button:hover {
+  background-color: #edc4cd;
+  cursor: pointer;
+}
+
+.main .button__a {
+  color: #000;
+  font-size: 1.2rem;
+  text-decoration: none;
 }

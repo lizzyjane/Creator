@@ -1,15 +1,5 @@
 .main {
 
-    .header {
-        height: 20px;
-        padding-bottom: 30px;
-        margin: 0 0 20px 0;
-        padding: 0;
-        background: -moz-linear-gradient(left, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(left, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to right, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    }
-
     #loader {
         border: 10px solid #f3f3f3;
         border-top: 10px solid #a9b6eb;
@@ -24,18 +14,6 @@
     @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
-    }
-
-    .footer {
-        position: fixed;
-        height: 40px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0;
-        background: -moz-linear-gradient(left, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(left, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to right, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
 
     .infotext {
@@ -66,7 +44,7 @@
         text-align: center;
 
         img {
-            width: 30%;
+            width: 20%;
         }
     }
 
@@ -87,34 +65,27 @@
     }
 
     .block {
-        &__left {
-            border-style: solid;
-            border-width: 3px;
-            border-color: $cutegrey;
-            float: left;
-            width: 100%;
-        }
-
-        &__right {
-            border-style: solid;
-            border-width: 3px;
-            border-color: $cutegrey;
-            float: left;
-            width: 100%;
-        }
+        border-style: solid;
+        border-width: 3px;
+        border-color: $cutegrey;
+        margin: 0 auto;
+        margin-top: 3rem;
+    //  max-width: 94%;
     }
 
     #imgPerson {
         img{
-            width: 10rem;
+            max-height: 18rem;
         }
 
-        padding: 2.5rem 2.5rem 2.5rem 1.5rem;
+        padding: 2.5rem 2.5rem 2.5rem 2.5rem;
         float: left;
     }
 
     .age {
         float: left;
+        margin: 0 auto;
+        max-width: 10rem;
 
         &__name {
             float: left;
@@ -124,24 +95,23 @@
         }
 
         &__value {
-            font-size: 9rem;
             padding: 0;
             margin: 8rem 0rem 0rem 0rem;
         }
     }
 
-    #gender_man {
-        width: 22%;
-        padding: 2.5rem 0rem 2.5rem 1rem;
-        float: left;
-        display: none;
+    #man__hair, #man__face, #man__eyes, #woman__hair,  #woman__face, #woman__eyes {
+        position: absolute;
     }
 
-    #gender_woman {
-        width: 22%;
-        padding: 2.5rem 0rem 2.5rem 1rem;
-        float: left;
+    #man {
         display: none;
+        padding: 2.5rem 0rem;
+    }
+
+    #woman {
+        display: none;
+        padding: 2.5rem 0rem;
     }
 
     .glasses {
@@ -149,6 +119,7 @@
 
         &__block {
             float: left;
+            margin: 0.5rem 3rem 0.5rem 0rem;
         }
 
         &__text {
@@ -157,33 +128,58 @@
     }
 
     #no_glasses {
-        width: 260%;
+        width: 100%;
     }
 
     #yes_glasses {
-        width: 260%;
+        width: 100%;
     }
 
     #block {
         visibility: hidden;
     }
 
-     #skincolor {
-        background-color: #db9d38;
-        width: 15rem;
-        height: 20rem;
-    } 
-
-     #haircolor {
-        background-color: #db9d38;
-        width: 15rem;
-        height: 20rem;
+    .colors {
+        margin: auto 0;
+        max-width: 8rem;
     }
 
-    #eyecolor {
-        background-color: #db9d38;
-        width: 15rem;
-        height: 20rem;
+    path.woman__hair--a {
+        fill: #aaa;
+    }
+
+    path.woman__face--b {
+        fill: #ccc;
+    }
+
+    circle.woman__eyes--a {
+        fill: #eee;
+    }
+
+    #skincolor, #haircolor, #eyecolor {
+        background-color: $cutegrey;
+        width: 6rem;
+        height: 3rem;
+        margin: 1rem;
+        margin: 0 auto;
+    } 
+
+    .button {
+        background-color: $babypink;
+        padding: 0.5rem;
+        margin: 2rem;
+        text-align: center;
+
+        &:hover {
+            background-color: #edc4cd;
+            cursor: pointer;
+        }
+
+        &__a {
+            color: $black;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
     }
 }
 
