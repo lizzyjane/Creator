@@ -9,7 +9,6 @@
 	<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
 	<script src="js/svg.js" type="text/javascript"></script>
 	<script src="js/nameColor.js" type="text/javascript"></script>
-	<script src="js/checkColors.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -60,7 +59,7 @@
 		</section>
 	</div>
 
-	<script src="js/colors.js" type="text/javascript"></script>
+	<script src="js/checkColors.js" type="text/javascript"></script>
 	<div class="footer"><p class="footer__credits">Face Recognition by <a href="https://www.betafaceapi.com">betafaceapi.com</a></p></div>
 </body>
 <html>

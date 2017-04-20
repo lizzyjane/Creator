@@ -196,6 +196,8 @@ function encodeImageFileAsURL(callback, context) {
 						case "color skin":
 						colorSkin = ("#" + TagInfo[i].value);
 
+
+
 						// console.log(age, gender, glasses, race, colorEyes, colorHair, colorSkin);
 						document.getElementById('age__value').innerHTML = age;
 
@@ -297,6 +299,8 @@ function encodeImageFileAsURL(callback, context) {
 
 					window.location.href = 'match.php?colorEyes=' + colorEyes_c + '&colorHair=' + colorHair_c + '&colorSkin=' + colorSkin_c; 
 					};
+
+
 
 
 

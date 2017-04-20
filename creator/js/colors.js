@@ -33,16 +33,5 @@ $("#eyecolors").css("background-color", _colorEyes);
 var colorEyesRGB = hexToRgb(_colorEyes);
 var colorHairRGB = hexToRgb(_colorHair);
 var colorSkinRGB = hexToRgb(_colorSkin);
+
 console.log(colorEyesRGB, colorHairRGB, colorSkinRGB);
-
-
-// function colorDistanceRGB(c1, c2) {
-// 	r = c1.r - c2.r;
-// 	g = c1.g - c2.g;
-// 	b = c1.b - c2.b;
-
-// 	return sqrt(r*r + g*g + b*b);
-// }
-
-
-//of sqrt( (r*r) + (g*g) + (b*b) );
