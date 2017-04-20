@@ -13,4 +13,15 @@ footer {
 	background: -moz-linear-gradient(left, #1e5799 0%, #2989d8 0%, #edccd4 0%, #a9b6eb 14%, #a9d2db 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(left, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to right, #1e5799 0%,#2989d8 0%,#edccd4 0%,#a9b6eb 14%,#a9d2db 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+	&__credits {
+		color: $black;
+    	text-align: right;
+    	padding: 0rem 1rem;
+	}
+
+	a {
+		color: $white;
+		text-decoration: none;
+	}
 }

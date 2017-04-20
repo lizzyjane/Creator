@@ -1,4 +1,6 @@
-var _colorEyes = "#906a51";
+var _colorEyes = hexToRgb();
+var _colorHair = hexToRgb();
+var _colorSkin = hexToRgb();
 
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

@@ -865,6 +865,17 @@ body {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
+.footer__credits {
+  color: #000;
+  text-align: right;
+  padding: 0rem 1rem;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
 .header {
   height: 20px;
   padding-bottom: 30px;
@@ -978,6 +989,7 @@ p {
   border-color: #b3b3b3;
   margin: 0 auto;
   margin-top: 3rem;
+  max-width: 66%;
 }
 
 .main .block__match {
@@ -986,6 +998,7 @@ p {
   border-color: #b3b3b3;
   margin: 0 auto;
   margin-top: 3rem;
+  max-width: 45%;
 }
 
 .main #imgPerson {
@@ -1056,7 +1069,12 @@ p {
 
 .main .colors {
   margin: auto 0;
-  max-width: 8rem;
+  padding: 1rem 0rem;
+}
+
+.main .colors_yt {
+  margin: auto 0;
+  padding: 1rem 0rem;
 }
 
 .main path.woman__hair--a {
@@ -1111,5 +1129,32 @@ p {
 .main .button__a {
   color: #000;
   font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.main .yt {
+  margin: 0 auto;
+}
+
+.main .yt__name {
+  color: #a9b6eb;
+  text-align: center;
+  font-size: 6rem;
+  font-weight: bold;
+  padding: 1.1rem 0rem;
+}
+
+.main .yt__link {
+  background-color: #D82624;
+  color: #fff;
+  padding: 4rem;
+  font-weight: bold;
+  text-align: center;
+  font-size: 3rem;
+  text-decoration: none;
+}
+
+.main .yt__link a {
+  color: #fff;
   text-decoration: none;
 }

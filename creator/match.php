@@ -26,7 +26,7 @@
 				</div>
 			</div>
 
-			<div id="block__match" class="block col-lg-8">
+			<div id="block__match" class="block__match col-lg-6">
 					<div class="row">
 						<div class="colors col-lg-2">
 							<div id="skincolors"></div>
@@ -39,15 +39,21 @@
 							<h3>Your eyecolor</h3>
 						</div>
 
+						<div class="yt">
+							<div class="yt__name">Lauren Curtis</div>
+							<div class="yt__link"><a href="http://www.youtube.com/user/laurenbeautyy">Youtube Channel</a></div>
+						</div>
+
+
 						<div class="colors_yt col-lg-2">
 							<div id="skincolors_yt"></div>
-							<h3>Her <br> skincolor</h3>
+							<h3>Her skincolor</h3>
 
 							<div id="haircolors_yt"></div>
-							<h3>Her <br> haircolor</h3>
+							<h3>Her haircolor</h3>
 
 							<div id="eyecolors_yt"></div> 
-							<h3>Her <br> eyecolor</h3>
+							<h3>Her eyecolor</h3>
 						</div>
 					</div>
 			</div>
@@ -55,6 +61,6 @@
 	</div>
 
 	<script src="js/colors.js" type="text/javascript"></script>
-	<div class="footer"></div>
+	<div class="footer"><p class="footer__credits">Face Recognition by <a href="https://www.betafaceapi.com">betafaceapi.com</a></p></div>
 </body>
 <html>
