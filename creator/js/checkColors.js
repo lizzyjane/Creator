@@ -58,9 +58,18 @@ function parseColorsPHP(colorEyes, colorHair, colorSkin) {
 			var YTcolorSkin = data.skincolor;
 			var YTcolorHair = data.haircolor;
 			var YTcolorEyes = data.eyecolor;
+			var UserSkincolor = data.lightSkin;
 			YT_link = YTUsername.replace("https://www.youtube.com/user/", "");
 
 			//var YT_link = "https://www.youtube.com/user/" + YTUsername;
+
+			if (UserSkincolor == false) {
+				console.log("You have dark skin!");
+			}
+
+			else {
+				console.log("You have light skin!");
+			}
 
 			document.getElementById('textblock__YT').innerHTML = YTName;
         	document.getElementById('yt__name').innerHTML = YTName;

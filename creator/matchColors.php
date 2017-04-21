@@ -63,9 +63,38 @@ function userColorsRBG ($colorEyes_RGB, $colorHair_RGB, $colorSkin_RGB) {
 
 	$conn = dbConnection();
 	$youtubers = getUsers($conn);
-	
+
 	$closestMatch = null;
 	$dist = INF;
+
+	DistUserDarkorLightSkin($colorDataUser);
+
+	function DistUserDarkorLightSkin($colorDataUser) {
+		$colorDarkSkin = new stdClass();
+		$colorDarkSkin->R = 181;
+		$colorDarkSkin->G = 132;
+		$colorDarkSkin->B = 104;
+
+		$colorLightSkin = new stdClass();
+		$colorLightSkin->R = 221;
+		$colorLightSkin->G = 148;
+		$colorLightSkin->B = 107;
+
+		$distanceUsertoLightSkin = colorDistanceRGB($colorDataUser->skin, $colorLightSkin);
+		$distanceUsertoDarkSkin = colorDistanceRGB($colorDataUser->skin, $colorDarkSkin);
+
+		#check if user has light skin or dark skin
+		if ($distanceUsertoLightSkin < $distanceUsertoDarkSkin) {
+			$lightSkin = "You have light skin!";
+			return true;
+		}
+
+		else {
+			$darkSkin = "You have dark skin!";
+			return false;
+		}
+	}
+	
 
 	for ($i = 0; $i < count($youtubers); $i++) {
     	$haircolorYoutuber = $youtubers[$i]["haircolor"];
@@ -73,7 +102,6 @@ function userColorsRBG ($colorEyes_RGB, $colorHair_RGB, $colorSkin_RGB) {
     	$skincolorYoutuber = $youtubers[$i]["skincolor"];
 
     	$colorDataYoutuber = youtubeColorsRGB($haircolorYoutuber, $eyecolorYoutuber, $skincolorYoutuber);
-		//$colorDistanceYT_U = colorDistanceRGB($colorAllUser, $colorAllYT);
 
 		$currDist = colorDistanceRGB($colorDataUser->hair, $colorDataYoutuber->hair);
 		if ($currDist < $dist)
@@ -81,11 +109,9 @@ function userColorsRBG ($colorEyes_RGB, $colorHair_RGB, $colorSkin_RGB) {
 			$dist = $currDist;
 			$closestMatch = $youtubers[$i];
 		}
-
-
 	} 
-
-	echo json_encode ($closestMatch);
+	$closestMatch["lightSkin"] = DistUserDarkorLightSkin($colorDataUser);
+	 echo json_encode ($closestMatch);
 
 	function youtubeColorsRGB($haircolorYoutuber, $eyecolorYoutuber, $skincolorYoutuber) {
 		$colorEyesYT_RGB = $eyecolorYoutuber;

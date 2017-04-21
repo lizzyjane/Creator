@@ -166,7 +166,7 @@ function encodeImageFileAsURL(callback, context) {
 			};
 
 			function searchAllPar(TagInfo) {
-				console.log(TagInfo);
+				// console.log(TagInfo);
 				var age = "";
 				var gender = "";
 				var glasses = "";
@@ -298,6 +298,24 @@ function encodeImageFileAsURL(callback, context) {
 						colorSkin_c = colorSkin_c.replace("#", "");
 
 					window.location.href = 'match.php?colorEyes=' + colorEyes_c + '&colorHair=' + colorHair_c + '&colorSkin=' + colorSkin_c; 
+					};
+
+					function parseColorsPHP() {
+						var colorEyes_c = colorEyes;
+						colorEyes_c = colorEyes_c.replace("#", "");
+
+						var colorHair_c = colorHair;
+						colorHair_c = colorHair_c.replace("#", "");
+
+						var colorSkin_c = colorSkin;
+						colorSkin_c = colorSkin_c.replace("#", "");
+
+						$.ajax({
+							type: "POST",
+							url: 'matchColors.php?colorEyes=' + colorEyes_c + '&colorHair=' + colorHair_c + '&colorSkin=' + colorSkin_c,
+							success: success,
+							dataType: dataType
+						});
 					};
 
 
