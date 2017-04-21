@@ -20,8 +20,7 @@
 
 			<div class="">
 				<div class="textblock col-lg-7">
-					<p>You have a match with Lauren Curtis! 
-					This youtuber looks like you and can help you with your make-up!</p>
+					<p class="textblock__p">You have a match with </p><p class="textblock__YT" id="textblock__YT"> </p><p class="textblock__p">! This youtuber looks like you and can help you with your make-up!</p>
 				</div>
 			</div>
 
@@ -39,10 +38,9 @@
 						</div>
 
 						<div class="yt">
-							<div class="yt__name">Lauren Curtis</div>
-							<div class="yt__link"><a href="http://www.youtube.com/user/laurenbeautyy">Youtube Channel</a></div>
+							<div id="yt__name" class="yt__name"></div>
+							<div id="yt__link" class="yt__link"></div>
 						</div>
-
 
 						<div class="colors_yt col-lg-2">
 							<div id="skincolors_yt"></div>

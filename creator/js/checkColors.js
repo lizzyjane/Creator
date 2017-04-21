@@ -50,8 +50,30 @@ function parseColorsPHP(colorEyes, colorHair, colorSkin) {
 	$.ajax({
 		type: "POST",
 		url: 'matchColors.php?colorEyes=' + colorEyes_c + '&colorHair=' + colorHair_c + '&colorSkin=' + colorSkin_c,
+		dataType: "json",
 		success: function (data) {
-			console.log("test");
+			var YTfirstName = data.first_name;
+			var YTName = " " + data.first_name + " " + data.last_name;
+			var YTUsername = data.yt_username;
+			var YTcolorSkin = data.skincolor;
+			var YTcolorHair = data.haircolor;
+			var YTcolorEyes = data.eyecolor;
+			YT_link = YTUsername.replace("https://www.youtube.com/user/", "");
+
+			//var YT_link = "https://www.youtube.com/user/" + YTUsername;
+
+			document.getElementById('textblock__YT').innerHTML = YTName;
+        	document.getElementById('yt__name').innerHTML = YTName;
+			document.getElementById('yt__link').innerHTML = YT_link;
+
+			$("#skincolors_yt").css("background-color", YTcolorSkin);
+			$("#haircolors_yt").css("background-color", YTcolorHair);
+			$("#eyecolors_yt").css("background-color", YTcolorEyes);
+
+			$(document).ready(function() {
+				var link = "<a href='http://www.youtube.com/user/" + YTUsername + "'>Youtube Channel</a>";
+				document.getElementById("yt__link").innerHTML = link;
+			});
 		},
 	});
 };

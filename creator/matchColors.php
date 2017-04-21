@@ -20,16 +20,19 @@
 	$colorDataUser = userColorsRBG ($colorEyes_RGB, $colorHair_RGB, $colorSkin_RGB);
 
 function userColorsRBG ($colorEyes_RGB, $colorHair_RGB, $colorSkin_RGB) {
+	// change hexcode to RGB
 	list($r, $g, $b) = sscanf($colorEyes_RGB, "#%02x%02x%02x");
 	$colorEyes_R = "$r";
 	$colorEyes_G = "$g";
 	$colorEyes_B = "$b";
 
+	// change hexcode to RGB
 	list($r, $g, $b) = sscanf($colorHair_RGB, "#%02x%02x%02x");
 	$colorHair_R = "$r";
 	$colorHair_G = "$g";
 	$colorHair_B = "$b";
 
+	// change hexcode to RGB
 	list($r, $g, $b) = sscanf($colorSkin_RGB, "#%02x%02x%02x");
 	$colorSkin_R = "$r";
 	$colorSkin_G = "$g";
@@ -55,42 +58,53 @@ function userColorsRBG ($colorEyes_RGB, $colorHair_RGB, $colorSkin_RGB) {
 	$colorAllUser->hair = $colorHairUser;
 	$colorAllUser->skin = $colorSkinUser;
 
-	return ($colorAllUser);
-
+		return ($colorAllUser);
 	}
-
 
 	$conn = dbConnection();
 	$youtubers = getUsers($conn);
-
+	
+	$closestMatch = null;
+	$dist = INF;
 
 	for ($i = 0; $i < count($youtubers); $i++) {
-    	//echo "$i";
     	$haircolorYoutuber = $youtubers[$i]["haircolor"];
     	$eyecolorYoutuber = $youtubers[$i]["eyecolor"];
     	$skincolorYoutuber = $youtubers[$i]["skincolor"];
-    	// echo $haircolorYoutuber;
 
     	$colorDataYoutuber = youtubeColorsRGB($haircolorYoutuber, $eyecolorYoutuber, $skincolorYoutuber);
-		$colorDistanceYT_U = colorDistanceRGB($colorAllUser, $colorAllYT);
-		echo ($colorDistanceYT_U);
+		//$colorDistanceYT_U = colorDistanceRGB($colorAllUser, $colorAllYT);
+
+		$currDist = colorDistanceRGB($colorDataUser->hair, $colorDataYoutuber->hair);
+		if ($currDist < $dist)
+		{
+			$dist = $currDist;
+			$closestMatch = $youtubers[$i];
+		}
+
+
 	} 
+
+	echo json_encode ($closestMatch);
 
 	function youtubeColorsRGB($haircolorYoutuber, $eyecolorYoutuber, $skincolorYoutuber) {
 		$colorEyesYT_RGB = $eyecolorYoutuber;
 		$colorHairYT_RGB = $haircolorYoutuber;
 		$colorSkinYT_RGB = $skincolorYoutuber;
 
+		// change hexcode to RGB
 		list($r, $g, $b) = sscanf($eyecolorYoutuber, "#%02x%02x%02x");
 		$colorEyesYT_R = "$r";
 		$colorEyesYT_G = "$g";
 		$colorEyesYT_B = "$b";
 
+		// change hexcode to RGB
 		list($r, $g, $b) = sscanf($haircolorYoutuber, "#%02x%02x%02x");
 		$colorHairYT_R = "$r";
 		$colorHairYT_G = "$g";
 		$colorHairYT_B = "$b";
 
+		// change hexcode to RGB
 		list($r, $g, $b) = sscanf($skincolorYoutuber, "#%02x%02x%02x");
 		$colorSkinYT_R = "$r";
 		$colorSkinYT_G = "$g";
